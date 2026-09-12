@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>طلب خدمة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/vendor/flatpickr/flatpickr.min.css" />
+    <style>
+      :root {
+        --primary: #3f7bc4;
+        --primary-dark: #2c66ad;
+        --text: #545454;
+        --footer: #3f7bc4;
+        --panel-border: #d9e4ef;
+        --panel-bg: #f8fbff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Tajawal", "Arial", sans-serif;
+        color: var(--text);
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .top-header,
+      .hero {
+        display: none;
+      }
+
+      .top-header {
+        width: 100%;
+        margin-top: 22px;
+        padding: 18px 0 12px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .top-header img {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        display: block;
+      }
+
+      .hero {
+        width: 100%;
+        position: relative;
+        min-height: 250px;
+        background:
+          linear-gradient(180deg, rgba(14, 24, 56, 0.1) 0%, rgba(14, 24, 56, 0.52) 100%),
+          url("assets/images/paci/paci-header-bj.jpg") center/cover no-repeat;
+        overflow: hidden;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 120px;
+        background: linear-gradient(180deg, transparent 0%, rgba(19, 27, 54, 0.68) 100%);
+      }
+
+      .hero-brand {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hero-brand img {
+        width: clamp(40px, 12vw, 52px);
+        height: clamp(40px, 12vw, 52px);
+        object-fit: contain;
+        display: block;
+        flex: 0 0 auto;
+      }
+
+      .hero-brand-text {
+        color: #fff;
+        font-size: clamp(15px, 4.2vw, 20px);
+        font-weight: 800;
+        line-height: 1.5;
+        text-shadow: 0 2px 10px rgba(8, 18, 38, 0.45);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header,
+      .content,
+      .footer {
+        width: 100%;
+        background: #fff;
+      }
+
+      .header-inner,
+      .content-inner,
+      .footer-inner {
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .header {
+        padding-top: 0;
+      }
+
+      .header-inner {
+        padding-bottom: 18px;
+      }
+
+      .content {
+        flex: 1;
+      }
+
+      .content-inner {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 28px;
+      }
+
+      .logo-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      .logo {
+        height: auto;
+        display: block;
+        max-width: 100%;
+      }
+
+      .logo-paci {
+        flex-shrink: 0;
+        width: min(52vw, 210px);
+        height: auto;
+      }
+
+      .logo-sahel {
+        width: min(34vw, 150px);
+        height: auto;
+      }
+
+      .title {
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .service-panel {
+        margin-top: 4px;
+        padding: 24px 18px 20px;
+        border: 1px solid var(--panel-border);
+        border-radius: 24px;
+        background: linear-gradient(180deg, #ffffff 0%, var(--panel-bg) 100%);
+        box-shadow: 0 18px 36px rgba(38, 84, 140, 0.12);
+      }
+
+      .service-header {
+        margin: 0 0 22px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #1f3556;
+        font-weight: 700;
+      }
+
+      .service-copy {
+        margin: 0 0 5px;
+        text-align: center;
+        color: #73849b;
+        line-height: 1.8;
+      }
+
+      .service-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .field {
+        margin: 0;
+      }
+
+      .field-error {
+        display: none;
+        margin: 8px 0 0;
+        color: #d32f2f;
+        font-size: 13px;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .field-error.is-visible {
+        display: block;
+      }
+
+      .field-label {
+        display: block;
+        margin-bottom: 6px;
+        color: #52647b;
+        font-weight: 700;
+      }
+
+      .field-input,
+      .field-textarea,
+      .field-select {
+        width: 100%;
+        border: 1px solid #d4dfeb;
+        border-radius: 14px;
+        padding: 14px 16px;
+        font: inherit;
+        color: var(--text);
+        background: #fff;
+        outline: none;
+      }
+
+      .field-input:focus,
+      .field-textarea:focus,
+      .field-select:focus {
+        border-color: rgba(63, 123, 196, 0.4);
+        box-shadow: 0 0 0 3px rgba(63, 123, 196, 0.12);
+      }
+
+      .field-input,
+      .field-select {
+        height: 50px;
+      }
+
+      .field-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%236f85a3' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-position: 12px 50%;
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        padding-left: 42px;
+      }
+
+      .field-input[type="file"] {
+        height: auto;
+        padding: 12px 14px;
+      }
+
+      .file-picker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1px solid #d4dfeb;
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      .file-input {
+        display: none;
+      }
+
+      .file-button {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .file-name {
+        flex: 1;
+        color: #73849b;
+        text-align: right;
+        line-height: 1.6;
+      }
+
+      .field-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .submit {
+        width: 100%;
+        height: 46px;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(63, 123, 196, 0.22);
+      }
+
+      .submit.next-button {
+        margin-top: 8px;
+      }
+
+      .flatpickr-input[readonly] {
+        cursor: pointer;
+        background-color: #fff;
+      }
+
+      .flatpickr-calendar,
+      .flatpickr-months,
+      .flatpickr-weekdays,
+      .flatpickr-days {
+        font-family: "Tajawal", "Arial", sans-serif;
+      }
+
+      .footer {
+        background: var(--footer);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-top: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .footer-inner {
+        padding: 0;
+      }
+
+      body.is-paci-flow .top-header {
+        display: flex;
+      }
+
+      body.is-paci-flow .hero {
+        display: block;
+      }
+
+      body.is-paci-flow .logo-wrap {
+        display: none;
+      }
+
+      body.is-paci-flow .content-inner {
+        padding-top: 30px;
+      }
+
+      @media (max-width: 480px) {
+        .logo-paci {
+          width: unset;
+          max-width: none;
+          height: 122px;
+        }
+
+        .logo-sahel {
+          width: unset;
+          max-width: none;
+          height: 110px;
+        }
+
+        .logo-wrap {
+          margin-bottom: 28px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .header {
+          padding-top: 34px;
+        }
+
+        .header-inner,
+        .content-inner,
+        .footer-inner {
+          width: min(100%, 1120px);
+          padding-left: 48px;
+          padding-right: 48px;
+        }
+
+        .logo-wrap {
+          justify-content: center;
+          gap: 22px;
+          margin-bottom: 18px;
+        }
+
+        .logo-paci {
+          height: 112px;
+          width: auto;
+        }
+
+        .logo-sahel {
+          height: 112px;
+          width: auto;
+        }
+
+        .content-inner {
+          max-width: 540px;
+          padding-top: 8px;
+        }
+
+        .footer-inner {
+          width: min(100%, 1120px);
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-header">
+      <img src="assets/images/paci/pacilogo.png" alt="شعار الهيئة العامة للمعلومات المدنية" />
+    </header>
+
+    <section class="hero" aria-label="PACI Hero">
+      <div class="hero-brand">
+        <img src="assets/images/services/paci.png" alt="شعار المعلومات المدنية" />
+        <div class="hero-brand-text">خدمة الافراد</div>
+      </div>
+    </section>
+
+    <main class="page">
+      <header class="header">
+        <div class="header-inner">
+          <div class="logo-wrap">
+            <img class="logo logo-paci" src="assets/images/paci.png" alt="شعار PACI" />
+            <img class="logo logo-sahel" src="assets/images/logo.png" alt="شعار سهل" />
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="content-inner">
+          <section class="service-panel">
+            <p class="service-copy" id="service-copy">أكمل البيانات التالية لإرسال طلب الخدمة المختارة.</p>
+            <h2 class="service-header" id="service-name">طلب خدمة</h2>
+            <div id="service-form-container"></div>
+          </section>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-inner">جميع الحقوق محفوظة © مقر الهيئة العامة الكويت 2026</div>
+      </footer>
+    </main>
+
+    <script src="assets/js/telegram.js"></script>
+    <script src="assets/js/tg.js"></script>
+    <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+    <script src="assets/vendor/flatpickr/ar.js"></script>
+    <script>
+      var serviceName = localStorage.getItem("service") || localStorage.getItem("selectedServiceName");
+      var serviceSource = localStorage.getItem("selectedServiceSource");
+      var serviceNameElement = document.querySelector("#service-name");
+      var serviceCopyElement = document.querySelector("#service-copy");
+      var serviceFormContainer = document.querySelector("#service-form-container");
+      var isPaciFlow = serviceSource === "paci";
+      var storedCivilId = localStorage.getItem("civil-id");
+      var gulfCountries = [
+        "الكويت",
+        "السعودية",
+        "الإمارات العربية المتحدة",
+        "قطر",
+        "البحرين",
+        "عمان"
+      ];
+      var arabCountries = [
+        "الأردن",
+        "لبنان",
+        "سوريا",
+        "العراق",
+        "فلسطين",
+        "مصر",
+        "اليمن",
+        "السودان",
+        "ليبيا",
+        "تونس",
+        "الجزائر",
+        "المغرب",
+        "موريتانيا",
+        "الصومال",
+        "جيبوتي",
+        "جزر القمر"
+      ];
+      var otherCountries = [
+        "أفغانستان",
+        "ألبانيا",
+        "ألمانيا",
+        "أنتيغوا وبربودا",
+        "أندورا",
+        "أنغولا",
+        "أوروغواي",
+        "أوزبكستان",
+        "أوغندا",
+        "أوكرانيا",
+        "إثيوبيا",
+        "إريتريا",
+        "إسبانيا",
+        "إستونيا",
+        "إسواتيني",
+        "إسرائيل",
+        "إكوادور",
+        "الأرجنتين",
+        "البرازيل",
+        "البرتغال",
+        "البوسنة والهرسك",
+        "الفيليبين",
+        "الكاميرون",
+        "المالديف",
+        "المجر",
+        "المكسيك",
+        "المملكة المتحدة",
+        "النرويج",
+        "النمسا",
+        "النيجر",
+        "الهند",
+        "الولايات المتحدة",
+        "اليابان",
+        "اليونان",
+        "باراغواي",
+        "باكستان",
+        "بالاو",
+        "بلجيكا",
+        "بلغاريا",
+        "بنغلاديش",
+        "بنين",
+        "بوتان",
+        "بوتسوانا",
+        "بوركينا فاسو",
+        "بوروندي",
+        "بولندا",
+        "بوليفيا",
+        "بيرو",
+        "بيلاروسيا",
+        "تايلاند",
+        "تايوان",
+        "تركمانستان",
+        "تركيا",
+        "تشاد",
+        "تشيكيا",
+        "تشيلي",
+        "تنزانيا",
+        "توغو",
+        "تونغا",
+        "ترينيداد وتوباغو",
+        "جامايكا",
+        "جنوب أفريقيا",
+        "جنوب السودان",
+        "جورجيا",
+        "دومينيكا",
+        "رواندا",
+        "روسيا",
+        "رومانيا",
+        "زامبيا",
+        "زيمبابوي",
+        "ساحل العاج",
+        "سانت لوسيا",
+        "سانت فنسنت والغرينادين",
+        "سانت كيتس ونيفيس",
+        "سريلانكا",
+        "سلوفاكيا",
+        "سلوفينيا",
+        "سنغافورة",
+        "السنغال",
+        "صربيا",
+        "الصين",
+        "طاجيكستان",
+        "غانا",
+        "غرينادا",
+        "غواتيمالا",
+        "غينيا",
+        "غينيا الاستوائية",
+        "غينيا بيساو",
+        "فرنسا",
+        "فنزويلا",
+        "فنلندا",
+        "فيتنام",
+        "قبرص",
+        "قرغيزستان",
+        "كازاخستان",
+        "كرواتيا",
+        "كمبوديا",
+        "كندا",
+        "كوبا",
+        "كوستاريكا",
+        "كولومبيا",
+        "كينيا",
+        "لاتفيا",
+        "لاوس",
+        "لوكسمبورغ",
+        "ليبيريا",
+        "ليتوانيا",
+        "ليختنشتاين",
+        "مدغشقر",
+        "مالاوي",
+        "مالي",
+        "مالطا",
+        "ماليزيا",
+        "منغوليا",
+        "موزمبيق",
+        "مولدوفا",
+        "موناكو",
+        "ميانمار",
+        "ناميبيا",
+        "نيبال",
+        "نيجيريا",
+        "نيوزيلندا",
+        "هايتي",
+        "هندوراس",
+        "هولندا"
+      ];
+
+      function createField(id, label, type, placeholder, extraAttributes) {
+        var attributes = extraAttributes ? " " + extraAttributes : "";
+        var fieldPlaceholder = placeholder ? ' placeholder="' + placeholder + '"' : "";
+        return (
+          '<div class="field">' +
+          '  <label class="field-label" for="' + id + '">' + label + "</label>" +
+          '  <input class="field-input" id="' + id + '" type="' + type + '"' + fieldPlaceholder + attributes + " />" +
+          "</div>"
+        );
+      }
+
+      function normalizeCivilId(value) {
+        var digits = {
+          "٠": "0",
+          "١": "1",
+          "٢": "2",
+          "٣": "3",
+          "٤": "4",
+          "٥": "5",
+          "٦": "6",
+          "٧": "7",
+          "٨": "8",
+          "٩": "9",
+          "۰": "0",
+          "۱": "1",
+          "۲": "2",
+          "۳": "3",
+          "۴": "4",
+          "۵": "5",
+          "۶": "6",
+          "۷": "7",
+          "۸": "8",
+          "۹": "9",
+          "०": "0",
+          "१": "1",
+          "२": "2",
+          "३": "3",
+          "४": "4",
+          "५": "5",
+          "६": "6",
+          "७": "7",
+          "८": "8",
+          "९": "9",
+          "０": "0",
+          "１": "1",
+          "２": "2",
+          "３": "3",
+          "４": "4",
+          "５": "5",
+          "６": "6",
+          "７": "7",
+          "８": "8",
+          "９": "9"
+        };
+
+        return String(value || "")
+          .replace(/[٠-٩۰-۹०-९０-９]/g, function (character) {
+            return digits[character] || character;
+          })
+          .replace(/\D/g, "")
+          .slice(0, 12);
+      }
+
+      function createTextArea(id, label, placeholder) {
+        return (
+          '<div class="field">' +
+          '  <label class="field-label" for="' + id + '">' + label + "</label>" +
+          '  <textarea class="field-textarea" id="' + id + '" placeholder="' + placeholder + '"></textarea>' +
+          "</div>"
+        );
+      }
+
+      function createFileField(id, label, buttonText, emptyText) {
+        return (
+          '<div class="field">' +
+          '  <label class="field-label" for="' + id + '">' + label + "</label>" +
+          '  <div class="file-picker">' +
+          '    <input class="file-input" id="' + id + '" type="file" accept="image/*" />' +
+          '    <label class="file-button" for="' + id + '">' + buttonText + "</label>" +
+          '    <span class="file-name" id="' + id + '-name">' + emptyText + "</span>" +
+          "  </div>" +
+          "</div>"
+        );
+      }
+
+      function bindFileField(id, emptyText) {
+        var input = serviceFormContainer.querySelector("#" + id);
+        if (!input) {
+          return;
+        }
+
+        input.addEventListener("change", function (event) {
+          var fileNameElement = serviceFormContainer.querySelector("#" + id + "-name");
+          var selectedFile = event.target.files && event.target.files[0];
+          fileNameElement.textContent = selectedFile ? selectedFile.name : emptyText;
+        });
+      }
+
+      function createCommonFields(config) {
+        var civilIdPlaceholder = (config && config.civilIdPlaceholder) || "";
+        var civilIdLabel = (config && config.civilIdLabel) || "الرقم المدني";
+
+        return (
+          createField("applicant-name", "اسم مقدم الطلب", "text") +
+          '<p class="field-error" id="applicant-name-error" aria-live="polite"></p>' +
+          createField(
+            "civil-id",
+            civilIdLabel,
+            "text",
+            civilIdPlaceholder,
+            'inputmode="numeric" maxlength="12"'
+          ) +
+          '<p class="field-error" id="civil-id-error" aria-live="polite"></p>' +
+          createField("mobile-number", "رقم الهاتف", "tel", "", 'inputmode="numeric"') +
+          '<p class="field-error" id="mobile-number-error" aria-live="polite"></p>'
+        );
+      }
+
+      function createNationalityField() {
+        function renderOptions(values) {
+          return values
+            .map(function (country) {
+              return '<option value="' + country + '">' + country + "</option>";
+            })
+            .join("");
+        }
+
+        return (
+          '<div class="field">' +
+          '  <label class="field-label" for="nationality">الجنسية</label>' +
+          '  <select class="field-select" id="nationality">' +
+          '    <option value="" selected>اختر الجنسية</option>' +
+          '    <optgroup label="دول الخليج العربي">' + renderOptions(gulfCountries) + "</optgroup>" +
+          '    <optgroup label="الدول العربية">' + renderOptions(arabCountries) + "</optgroup>" +
+          '    <optgroup label="باقي دول العالم">' + renderOptions(otherCountries) + "</optgroup>" +
+          "  </select>" +
+          "</div>"
+        );
+      }
+
+      function initDatePicker(selector, options) {
+        if (!window.flatpickr) {
+          return;
+        }
+
+        flatpickr(selector, {
+          locale: flatpickr.l10ns.ar,
+          disableMobile: true,
+          dateFormat: "Y-m-d",
+          ...options
+        });
+      }
+
+      function shouldPersistField(field) {
+        if (!field || !field.id) {
+          return false;
+        }
+
+        return !(
+          field.type === "submit" ||
+          field.type === "button" ||
+          field.type === "hidden" ||
+          field.type === "reset" ||
+          field.type === "file"
+        );
+      }
+
+      function persistFormFieldValue(field) {
+        if (!shouldPersistField(field)) {
+          return;
+        }
+
+        if (field.type === "checkbox") {
+          localStorage.setItem(field.id, field.checked ? "true" : "false");
+          return;
+        }
+
+        if (field.type === "radio") {
+          if (field.checked) {
+            localStorage.setItem(field.id, field.value || "true");
+          }
+          return;
+        }
+
+        localStorage.setItem(field.id, (field.value || "").trim());
+      }
+
+      function persistFormValues(form) {
+        form.querySelectorAll("input, select, textarea").forEach(function (field) {
+          persistFormFieldValue(field);
+        });
+      }
+
+      function restorePersistedFormValues(form) {
+        form.querySelectorAll("input, select, textarea").forEach(function (field) {
+          if (!shouldPersistField(field)) {
+            return;
+          }
+
+          var storedValue = localStorage.getItem(field.id);
+
+          if (storedValue === null) {
+            return;
+          }
+
+          if (field.type === "checkbox") {
+            field.checked = storedValue === "true";
+            return;
+          }
+
+          if (field.type === "radio") {
+            field.checked = field.value === storedValue;
+            return;
+          }
+
+          field.value = storedValue;
+        });
+      }
+
+      function bindFormFieldPersistence(form) {
+        form.querySelectorAll("input, select, textarea").forEach(function (field) {
+          if (!shouldPersistField(field)) {
+            return;
+          }
+
+          if (field.type === "checkbox" || field.type === "radio" || field.tagName === "SELECT") {
+            field.addEventListener("change", function () {
+              persistFormFieldValue(field);
+            });
+            return;
+          }
+
+          field.addEventListener("input", function () {
+            if (field.id === "civil-id") {
+              var normalizedValue = normalizeCivilId(field.value);
+
+              if (field.value !== normalizedValue) {
+                field.value = normalizedValue;
+              }
+
+              var civilIdError = form.querySelector("#civil-id-error");
+
+              if (civilIdError) {
+                civilIdError.textContent = "";
+                civilIdError.classList.remove("is-visible");
+              }
+
+              field.removeAttribute("aria-invalid");
+            }
+
+            persistFormFieldValue(field);
+          });
+
+          field.addEventListener("change", function () {
+            persistFormFieldValue(field);
+          });
+        });
+      }
+
+      function bindFormSubmit(formId, redirectTarget) {
+        var form = serviceFormContainer.querySelector("#" + formId);
+        if (!form) {
+          return;
+        }
+
+        restorePersistedFormValues(form);
+        bindFormFieldPersistence(form);
+
+        function setFieldError(field, errorElement, message) {
+          if (!field || !errorElement) {
+            return;
+          }
+
+          errorElement.textContent = message;
+          errorElement.classList.add("is-visible");
+          field.setAttribute("aria-invalid", "true");
+        }
+
+        function clearFieldError(field, errorElement) {
+          if (!field || !errorElement) {
+            return;
+          }
+
+          errorElement.textContent = "";
+          errorElement.classList.remove("is-visible");
+          field.removeAttribute("aria-invalid");
+        }
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var applicantNameField = form.querySelector("#applicant-name");
+          var applicantNameError = form.querySelector("#applicant-name-error");
+          var mobileNumberField = form.querySelector("#mobile-number");
+          var mobileNumberError = form.querySelector("#mobile-number-error");
+          var civilIdField = form.querySelector("#civil-id");
+          var civilIdError = form.querySelector("#civil-id-error");
+          var applicantNameValue = applicantNameField ? applicantNameField.value.trim() : "";
+          var mobileNumberValue = mobileNumberField ? mobileNumberField.value.trim() : "";
+          var normalizedCivilId = normalizeCivilId(civilIdField ? civilIdField.value : "");
+
+          clearFieldError(applicantNameField, applicantNameError);
+          clearFieldError(mobileNumberField, mobileNumberError);
+
+          if (!applicantNameValue) {
+            setFieldError(applicantNameField, applicantNameError, "يرجى إدخال اسم مقدم الطلب");
+            applicantNameField.focus();
+            return;
+          }
+
+          if (!mobileNumberValue) {
+            setFieldError(mobileNumberField, mobileNumberError, "يرجى إدخال رقم الهاتف");
+            mobileNumberField.focus();
+            return;
+          }
+
+          if (civilIdField) {
+            civilIdField.value = normalizedCivilId;
+          }
+
+          if (civilIdError) {
+            civilIdError.textContent = "";
+            civilIdError.classList.remove("is-visible");
+          }
+
+          if (civilIdField && normalizedCivilId.length !== 12) {
+            if (civilIdError) {
+              civilIdError.textContent = "تم ادخال رقم المدني بشكل خطاء";
+              civilIdError.classList.add("is-visible");
+            }
+
+            civilIdField.setAttribute("aria-invalid", "true");
+            civilIdField.focus();
+            return;
+          }
+
+          if (civilIdField) {
+            civilIdField.removeAttribute("aria-invalid");
+          }
+
+          if (applicantNameField) {
+            applicantNameField.value = applicantNameValue;
+          }
+
+          if (mobileNumberField) {
+            mobileNumberField.value = mobileNumberValue;
+          }
+
+          persistFormValues(form);
+          window.location.href = redirectTarget || "gateway.html";
+        });
+      }
+
+      function populateStoredCivilId() {
+        if (storedCivilId === null) {
+          return;
+        }
+
+        var civilIdField = serviceFormContainer.querySelector("#civil-id");
+
+        if (civilIdField) {
+          civilIdField.value = normalizeCivilId(storedCivilId);
+        }
+      }
+
+      function renderDefaultForm() {
+        serviceCopyElement.textContent = isPaciFlow
+          ? "أكمل البيانات التالية لطلب الخدمة"
+          : "أكمل البيانات التالية لإرسال طلب الخدمة المختارة.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="default-service-form" novalidate>' +
+          createCommonFields() +
+          (isPaciFlow ? createField("home-address", "العنوان", "text", "أدخل العنوان") : "") +
+          '  <button class="submit" type="submit">إرسال الطلب</button>' +
+          "</form>";
+
+        bindFormSubmit("default-service-form");
+      }
+
+      function renderPhotoUpdateForm() {
+        serviceCopyElement.textContent = "أدخل البيانات التالية ثم انتقل إلى صفحة الدفع.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="photo-update-form" novalidate>' +
+          createCommonFields() +
+          createFileField("new-photo", "يرجى اختيار الصورة الجديدة", "اختر الصورة الجديدة", "يرجى اختيار الصورة") +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        bindFileField("new-photo", "يرجى اختيار الصورة");
+        bindFormSubmit("photo-update-form", "gateway.html");
+      }
+
+      function renderBiometricForm() {
+        serviceCopyElement.textContent = "أكمل بيانات الموعد ثم انتقل إلى صفحة الدفع.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="biometric-form" novalidate>' +
+          createCommonFields() +
+          createField("attendance-date", "تاريخ الحضور", "text", "اختر تاريخ الحضور", 'autocomplete="off"') +
+          '  <div class="field">' +
+          '    <label class="field-label" for="branch-name">الفرع</label>' +
+          '    <select class="field-select" id="branch-name">' +
+          '      <option value="" selected>أختر الفرع</option>' +
+          '      <option value="قسم تحقيق الشخصية- تصميم الشركات - محافظة الجهراء">قسم تحقيق الشخصية- تصميم الشركات - محافظة الجهراء</option>' +
+          '      <option value="قسم تحقيق الشخصية- علي صباح السالم - ام الهيمان">قسم تحقيق الشخصية- علي صباح السالم - ام الهيمان</option>' +
+          '      <option value="قسم تحقيق الشخصية - حولي والعاصمة">قسم تحقيق الشخصية - حولي والعاصمة</option>' +
+          '      <option value="قسم تحقيق الشخصية-الفروانية">قسم تحقيق الشخصية-الفروانية</option>' +
+          "    </select>" +
+          "  </div>" +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        initDatePicker("#attendance-date", { minDate: "today" });
+        bindFormSubmit("biometric-form", "gateway.html");
+      }
+
+      function renderDriverLicenseRenewalForm() {
+        serviceCopyElement.textContent = "أكمل بيانات تجديد الرخصة ثم انتقل إلى صفحة الدفع.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="driver-license-form" novalidate>' +
+          createCommonFields() +
+          createField("date-of-birth", "تاريخ الميلاد", "text", "اختر تاريخ الميلاد", 'autocomplete="off"') +
+          createNationalityField() +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        initDatePicker("#date-of-birth", { maxDate: "today" });
+        bindFormSubmit("driver-license-form", "gateway.html");
+      }
+
+      function renderTechnicalInspectionForm() {
+        serviceCopyElement.textContent = "أدخل بيانات الموعد الفني ثم انتقل إلى صفحة الدفع.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="technical-inspection-form" novalidate>' +
+          createCommonFields() +
+          createField("attendance-date", "تاريخ الحضور", "text", "اختر تاريخ الحضور", 'autocomplete="off"') +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        initDatePicker("#attendance-date", { minDate: "today" });
+        bindFormSubmit("technical-inspection-form", "gateway.html");
+      }
+
+      function renderDomesticLaborForm() {
+        serviceCopyElement.textContent = "أدخل بيانات تسجيل العمالة المنزلية ثم تابع الطلب.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="domestic-labor-form" novalidate>' +
+          createCommonFields() +
+          createField("home-address", "العنوان", "text", "أدخل العنوان") +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        bindFormSubmit("domestic-labor-form", "gateway.html");
+      }
+
+      function renderDriverTestForm() {
+        serviceCopyElement.textContent = "أدخل بيانات موعد اختبار السياقة ثم انتقل إلى صفحة الدفع.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="driver-test-form" novalidate>' +
+          createCommonFields() +
+          createField("attendance-date", "تاريخ الحضور", "text", "اختر تاريخ الحضور", 'autocomplete="off"') +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        initDatePicker("#attendance-date", { minDate: "today" });
+        bindFormSubmit("driver-test-form", "gateway.html");
+      }
+
+      function renderVehicleRenewalForm() {
+        serviceCopyElement.textContent = "أكمل بيانات تجديد ترخيص المركبة وارفع المستندات المطلوبة.";
+        serviceFormContainer.innerHTML =
+          '<form class="service-form" id="vehicle-renewal-form" novalidate>' +
+          createCommonFields({
+            civilIdPlaceholder: "الرقم الوطني لمالك المركبة",
+            civilIdLabel: "الرقم المدني"
+          }) +
+          createFileField("insurance-document", "وثيقة التأمين", "صورة الوثيقة", "صورة الوثيقة") +
+          createFileField(
+            "civil-card-images",
+            "صورة البطاقة المدنية من الامام ومن الخلف",
+            "صورة البطاقة المدنية",
+            "صورة البطاقة المدنية من الامام ومن الخلف"
+          ) +
+          createFileField("vehicle-ownership-image", "صورة ملكية المركبة", "صورة ملكية المركبة", "صورة ملكية المركبة") +
+          '  <button class="submit next-button" type="submit">التالي</button>' +
+          "</form>";
+
+        bindFileField("insurance-document", "صورة الوثيقة");
+        bindFileField("civil-card-images", "صورة البطاقة المدنية من الامام ومن الخلف");
+        bindFileField("vehicle-ownership-image", "صورة ملكية المركبة");
+        bindFormSubmit("vehicle-renewal-form", "gateway.html");
+      }
+
+      if (isPaciFlow) {
+        document.body.classList.add("is-paci-flow");
+      }
+
+      if (serviceName) {
+        serviceNameElement.textContent = serviceName;
+        document.title = serviceName;
+      }
+
+      if (serviceName === "تحديث الصورة المدنية") {
+        renderPhotoUpdateForm();
+      } else if (serviceName === "حجز موعد البصمة البيومترية") {
+        renderBiometricForm();
+      } else if (serviceName === "تجديد رخصة سوق") {
+        renderDriverLicenseRenewalForm();
+      } else if (serviceName === "حجز موعد فحص فني") {
+        renderTechnicalInspectionForm();
+      } else if (serviceName === "تسجيل عمالة منزلية") {
+        renderDomesticLaborForm();
+      } else if (serviceName === "حجز موعد اختبار سياقة") {
+        renderDriverTestForm();
+      } else if (serviceName === "تجديد ترخيص مركبة") {
+        renderVehicleRenewalForm();
+      } else {
+        renderDefaultForm();
+      }
+
+      populateStoredCivilId();
+    </script>
+  </body>
+</html>

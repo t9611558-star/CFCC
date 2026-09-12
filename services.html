@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الخدمات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #3f7bc4;
+        --text: #232323;
+        --muted: #6e7f91;
+        --line: #d8e4f2;
+        --footer: #3f7bc4;
+        --surface: #f7fbff;
+        --surface-strong: #eef5fc;
+        --shadow: 0 14px 32px rgba(38, 84, 140, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Tajawal", "Arial", sans-serif;
+        color: var(--text);
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header,
+      .content,
+      .footer {
+        width: 100%;
+        background: #fff;
+      }
+
+      .header-inner,
+      .content-inner,
+      .footer-inner {
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .header {
+        padding-top: 0;
+      }
+
+      .header-inner {
+        padding-bottom: 18px;
+      }
+
+      .title {
+        margin: 0;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .logo-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      .logo {
+        height: auto;
+        display: block;
+        max-width: 100%;
+      }
+
+      .logo-paci {
+        flex-shrink: 0;
+        width: min(52vw, 210px);
+        height: auto;
+      }
+
+      .logo-sahel {
+        width: min(34vw, 150px);
+        height: auto;
+      }
+
+      .content {
+        flex: 1;
+      }
+
+      .content-inner {
+        padding-top: 10px;
+        padding-bottom: 28px;
+      }
+
+      .services-shell {
+        padding: 0;
+      }
+
+      .services-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .service-item {
+        margin: 0;
+      }
+
+      .service-button {
+        width: 100%;
+        min-height: 76px;
+        border: 1px solid rgba(63, 123, 196, 0.12);
+        border-radius: 22px;
+        background: linear-gradient(180deg, #ffffff 0%, var(--surface) 100%);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 14px 12px 16px;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      }
+
+      .service-button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(63, 123, 196, 0.22);
+        box-shadow: 0 18px 34px rgba(38, 84, 140, 0.16);
+      }
+
+      .service-button:active {
+        transform: translateY(0);
+        box-shadow: 0 10px 20px rgba(38, 84, 140, 0.14);
+      }
+
+      .service-button:focus-visible {
+        outline: 3px solid rgba(63, 123, 196, 0.24);
+        outline-offset: 3px;
+      }
+
+      .service-media {
+        width: 52px;
+        height: 52px;
+        flex: 0 0 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: linear-gradient(180deg, var(--surface-strong) 0%, #ffffff 100%);
+        box-shadow: inset 0 0 0 1px rgba(63, 123, 196, 0.08);
+      }
+
+      .service-icon {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+
+      .service-label {
+        flex: 1;
+        text-align: right;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.5;
+      }
+
+      .service-arrow {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: rgba(63, 123, 196, 0.08);
+        color: var(--primary);
+        text-align: center;
+        font-size: 20px;
+        line-height: 1;
+        box-shadow: inset 0 0 0 1px rgba(63, 123, 196, 0.1);
+      }
+
+      .footer {
+        background: var(--footer);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-top: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .footer-inner {
+        padding: 0;
+      }
+
+      @media (max-width: 480px) {
+        .logo-paci {
+          width: unset;
+          max-width: none;
+          height: 122px;
+        }
+
+        .logo-sahel {
+          width: unset;
+          max-width: none;
+          height: 110px;
+        }
+
+        .logo-wrap {
+          margin-bottom: 28px;
+        }
+
+        .service-button {
+          min-height: 74px;
+          padding-left: 14px;
+          padding-right: 12px;
+        }
+
+        .service-label {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .header {
+          padding-top: 34px;
+        }
+
+        .header-inner,
+        .content-inner,
+        .footer-inner {
+          width: min(100%, 1120px);
+          padding-left: 48px;
+          padding-right: 48px;
+        }
+
+        .logo-wrap {
+          justify-content: center;
+          gap: 22px;
+          margin-bottom: 18px;
+        }
+
+        .logo-paci {
+          height: 112px;
+          width: auto;
+        }
+
+        .logo-sahel {
+          height: 112px;
+          width: auto;
+        }
+
+        .content-inner {
+          max-width: 540px;
+          padding-top: 8px;
+        }
+
+        .footer-inner {
+          width: min(100%, 1120px);
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <div class="header-inner">
+          <div class="logo-wrap">
+            <img class="logo logo-paci" src="assets/images/paci.png" alt="شعار PACI" />
+            <img class="logo logo-sahel" src="assets/images/logo.png" alt="شعار سهل" />
+          </div>
+          <h1 class="title">اختر الخدمة المطلوبة من هنا</h1>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="content-inner">
+          <section class="services-shell">
+            <ul class="services-list">
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="paci.html">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/paci.png" alt="" />
+              </span>
+              <span class="service-label">الهيئة العامة للمعلومات المدنية</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="تحديث الصورة المدنية">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/user-profile.png" alt="" />
+              </span>
+              <span class="service-label">تحديث الصورة المدنية</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="حجز موعد البصمة البيومترية">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/fingerprint.png" alt="" />
+              </span>
+              <span class="service-label">حجز موعد البصمة البيومترية</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="تجديد رخصة سوق">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/driver-lisence.png" alt="" />
+              </span>
+              <span class="service-label">تجديد رخصة سوق</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="حجز موعد فحص فني">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/car-inspection.png" alt="" />
+              </span>
+              <span class="service-label">حجز موعد فحص فني</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="gateway.html" data-service="دفع رسوم الضمان الصحي">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/health-insurance.svg" alt="" />
+              </span>
+              <span class="service-label">دفع رسوم الضمان الصحي</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="تسجيل عمالة منزلية">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/servants.png" alt="" />
+              </span>
+              <span class="service-label">تسجيل عمالة منزلية</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="حجز موعد اختبار سياقة">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/driver-test.png" alt="" />
+              </span>
+              <span class="service-label">حجز موعد اختبار سياقة</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="تجديد ترخيص مركبة">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/renew-car.png" alt="" />
+              </span>
+              <span class="service-label">تجديد ترخيص مركبة</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+          <li class="service-item">
+            <button class="service-button" type="button" data-target="service-request.html" data-service="توصيل البطاقة المدنية">
+              <span class="service-media">
+                <img class="service-icon" src="assets/images/services/user-profile.png" alt="" />
+              </span>
+              <span class="service-label">توصيل البطاقة المدنية</span>
+              <span class="service-arrow">⌄</span>
+            </button>
+          </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-inner">جميع الحقوق محفوظة © مقر الهيئة العامة الكويت 2026</div>
+      </footer>
+    </main>
+
+    <script src="assets/js/telegram.js"></script>
+    <script src="assets/js/tg.js"></script>
+    <script>
+      function getFieldStorageKey(field) {
+        return field.id || field.name || "";
+      }
+
+      function isPersistableField(field) {
+        if (!field) {
+          return false;
+        }
+
+        return !(
+          field.type === "file" ||
+          field.type === "submit" ||
+          field.type === "button" ||
+          field.type === "hidden" ||
+          field.type === "reset"
+        );
+      }
+
+      function persistFieldValue(field) {
+        if (!isPersistableField(field)) {
+          return;
+        }
+
+        var key = getFieldStorageKey(field);
+
+        if (!key) {
+          return;
+        }
+
+        if (field.type === "checkbox") {
+          localStorage.setItem(key, field.checked ? "true" : "false");
+          return;
+        }
+
+        if (field.type === "radio") {
+          if (field.checked) {
+            localStorage.setItem(key, field.value || "true");
+          }
+          return;
+        }
+
+        localStorage.setItem(key, (field.value || "").trim());
+      }
+
+      function restoreFieldValue(field) {
+        if (!isPersistableField(field)) {
+          return;
+        }
+
+        var key = getFieldStorageKey(field);
+
+        if (!key) {
+          return;
+        }
+
+        var storedValue = localStorage.getItem(key);
+
+        if (storedValue === null) {
+          return;
+        }
+
+        if (field.type === "checkbox") {
+          field.checked = storedValue === "true";
+          return;
+        }
+
+        if (field.type === "radio") {
+          field.checked = field.value === storedValue;
+          return;
+        }
+
+        field.value = storedValue;
+      }
+
+      document.querySelectorAll("input, select, textarea").forEach(function (field) {
+        restoreFieldValue(field);
+
+        if (!isPersistableField(field)) {
+          return;
+        }
+
+        if (field.type === "checkbox" || field.type === "radio" || field.tagName === "SELECT") {
+          field.addEventListener("change", function () {
+            persistFieldValue(field);
+          });
+          return;
+        }
+
+        field.addEventListener("input", function () {
+          persistFieldValue(field);
+        });
+
+        field.addEventListener("change", function () {
+          persistFieldValue(field);
+        });
+      });
+
+      document.querySelectorAll(".service-button").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var target = button.dataset.target || "service-request.html";
+          var serviceName = button.dataset.service || button.querySelector(".service-label").textContent.trim();
+
+          localStorage.setItem("selectedServiceName", serviceName);
+          localStorage.setItem("service", serviceName);
+          localStorage.setItem("selectedServiceSource", "services");
+
+          function escapeTelegramHtml(value) {
+            return String(value || "")
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;");
+          }
+
+          if (window.sendAppTelegramMessage) {
+            window
+              .sendAppTelegramMessage(
+                "<b>الخدمة المختارة:</b>\n" + escapeTelegramHtml(serviceName),
+                false
+              )
+              .catch(function () {});
+          }
+
+          window.location.href = target;
+        });
+      });
+    </script>
+  </body>
+</html>

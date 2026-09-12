@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الهيئة العامة للمعلومات المدنية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      :root {
+        --primary: #2f4fa3;
+        --primary-dark: #243f86;
+        --selected: #9c9c9c;
+        --text: #1d2430;
+        --muted: #6d7787;
+        --footer: #3f7bc4;
+        --line: #d9e0ea;
+        --menu-max-width: 768px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Tajawal", "Arial", sans-serif;
+        color: var(--text);
+        font-size: 15px;
+      }
+
+      .page {
+        width: 100%;
+        margin: 0;
+        padding: 0 20px 24px;
+        background: #fff url("assets/images/paci/bg_pattern.png") top left / 220px auto repeat;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .top-header {
+        width: 100%;
+        margin-top: 22px;
+        padding: 18px 0 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .top-header img {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        display: block;
+      }
+
+      .hero {
+        width: 100%;
+        position: relative;
+        min-height: 250px;
+        background:
+          linear-gradient(180deg, rgba(14, 24, 56, 0.1) 0%, rgba(14, 24, 56, 0.52) 100%),
+          url("assets/images/paci/paci-header-bj.jpg") center/cover no-repeat;
+        overflow: hidden;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 120px;
+        background: linear-gradient(180deg, transparent 0%, rgba(19, 27, 54, 0.68) 100%);
+      }
+
+      .hero-brand {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hero-brand img {
+        width: clamp(40px, 12vw, 52px);
+        height: clamp(40px, 12vw, 52px);
+        object-fit: contain;
+        display: block;
+        flex: 0 0 auto;
+      }
+
+      .hero-brand-text {
+        color: #fff;
+        font-size: clamp(15px, 4.2vw, 20px);
+        font-weight: 800;
+        line-height: 1.5;
+        text-shadow: 0 2px 10px rgba(8, 18, 38, 0.45);
+        text-align: right;
+      }
+
+      .services-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 22px 0 120px;
+      }
+
+      .services-heading {
+        width: 100%;
+      }
+
+      .section-title {
+        margin: 0;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 800;
+        color: #111;
+      }
+
+      .section-divider {
+        width: 64px;
+        height: 3px;
+        margin: 12px auto 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #5a7be1 0%, var(--primary) 100%);
+      }
+
+      .paci-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid #c7d0de;
+        background: #fff;
+      }
+
+      .menu-shell {
+        width: 100%;
+        max-width: var(--menu-max-width);
+        margin: 0 auto;
+      }
+
+      .paci-option {
+        position: relative;
+      }
+
+      .paci-option + .paci-option {
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .paci-option input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .paci-option-label {
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 0 18px;
+        background: var(--primary);
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 180ms ease;
+      }
+
+      .paci-option input:checked + .paci-option-label {
+        background: var(--selected);
+      }
+
+      .paci-option-label .fa {
+        width: 40px;
+        text-align: center;
+        font-size: 38px;
+        flex: 0 0 40px;
+      }
+
+      .paci-option-title {
+        flex: 1;
+        text-align: right;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+
+      .inquiry-panel {
+        width: min(95%, calc(var(--menu-max-width) * 0.95));
+        padding: 10px;
+        background: #fff;
+        border-right: 1px solid #d6dce7;
+        border-bottom: 1px solid #d6dce7;
+        border-left: 1px solid #d6dce7;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 10px 20px rgba(33, 55, 103, 0.08);
+      }
+
+      .inquiry-label {
+        display: none;
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 800;
+        color: #111;
+      }
+
+      .inquiry-input {
+        display: none;
+        width: 100%;
+        height: 42px;
+        border: 1px solid #d6dce7;
+        border-radius: 10px;
+        padding: 0 14px;
+        font: inherit;
+        color: var(--text);
+        background: #fff;
+        outline: none;
+      }
+
+      .inquiry-actions {
+        margin-top: 14px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .inquiry-button {
+        width: min(240px, 100%);
+        min-height: 54px;
+        border: 2px solid rgba(224, 234, 250, 0.95);
+        border-radius: 12px;
+        background: linear-gradient(180deg, #4a74ba 0%, #2b569a 100%);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 14px 28px rgba(33, 55, 103, 0.28);
+      }
+
+      .footer {
+        background: #2d2d2d;
+        color: #d9d9d9;
+        text-align: center;
+        padding: 28px 20px 34px;
+      }
+
+      .footer-copy {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .footer-links {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        color: #f0f0f0;
+      }
+
+      .footer-link {
+        color: inherit;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .footer-separator {
+        color: #b9b9b9;
+      }
+
+      .footer-socials {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .footer-social {
+        width: 62px;
+        height: 50px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        text-decoration: none;
+        font-size: 28px;
+      }
+
+      @media (max-width: 420px) {
+        .hero-brand {
+          gap: 8px;
+        }
+
+        .page {
+          background-size: 180px auto;
+        }
+
+        .footer-social {
+          width: 54px;
+          height: 46px;
+          font-size: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-header">
+      <img src="assets/images/paci/pacilogo.png" alt="شعار الهيئة العامة للمعلومات المدنية" />
+    </header>
+
+    <section class="hero" aria-label="PACI Hero">
+      <div class="hero-brand">
+        <img src="assets/images/services/paci.png" alt="شعار المعلومات المدنية" />
+        <div class="hero-brand-text">الهيئة العامة للمعلومات المدنية</div>
+      </div>
+    </section>
+
+    <main class="page">
+      <section class="services-section">
+        <div class="services-heading">
+          <h1 class="section-title">خدمات البطاقة</h1>
+          <div class="section-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="menu-shell">
+          <div class="paci-options">
+            <label class="paci-option">
+              <input type="radio" name="paci-service" value="card-status" />
+              <span class="paci-option-label">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <span class="paci-option-title">حالة البطاقة</span>
+              </span>
+            </label>
+
+            <label class="paci-option">
+              <input type="radio" name="paci-service" value="renew-card" />
+              <span class="paci-option-label">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+                <span class="paci-option-title">تجديد البطاقة</span>
+              </span>
+            </label>
+
+            <label class="paci-option">
+              <input type="radio" name="paci-service" value="address-availability" />
+              <span class="paci-option-label">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span class="paci-option-title">توفر العنوان</span>
+              </span>
+            </label>
+
+            <label class="paci-option">
+              <input type="radio" name="paci-service" value="card-validity" />
+              <span class="paci-option-label">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span class="paci-option-title">صلاحية البطاقة</span>
+              </span>
+            </label>
+
+            <label class="paci-option">
+              <input type="radio" name="paci-service" value="agency-requests" />
+              <span class="paci-option-label">
+                <i class="fa fa-building" aria-hidden="true"></i>
+                <span class="paci-option-title">طلبات الجهات والعناوين</span>
+              </span>
+            </label>
+
+            <label class="paci-option">
+              <input type="radio" name="paci-service" value="civil-id-inquiry" />
+              <span class="paci-option-label">
+                <i class="fa fa-share-square-o" aria-hidden="true"></i>
+                <span class="paci-option-title">الإستعلام عن رقم مدني</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <section class="inquiry-panel">
+          <form id="paci-inquiry-form" novalidate>
+            <label class="inquiry-label" for="paci-civil-id">الرقم المدني أو رقم الإيصال</label>
+            <input class="inquiry-input" id="paci-civil-id" type="text" inputmode="numeric" />
+            <div class="inquiry-actions">
+              <button class="inquiry-button" type="submit">إستعلام</button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer-copy">الهيئة العامة للمعلومات المدنية © 2026</p>
+
+      <div class="footer-links">
+        <a class="footer-link" href="#" data-inert-link>الرئيسية</a>
+        <span class="footer-separator">|</span>
+        <a class="footer-link" href="#" data-inert-link>شروط الإستخدام</a>
+        <span class="footer-separator">|</span>
+        <a class="footer-link" href="#" data-inert-link>سياسة الخصوصية</a>
+        <span class="footer-separator">|</span>
+        <a class="footer-link" href="#" data-inert-link>تواصل معنا</a>
+      </div>
+
+      <div class="footer-socials">
+        <a class="footer-social" href="#" data-inert-link aria-label="يوتيوب"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+        <a class="footer-social" href="#" data-inert-link aria-label="انستغرام"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a class="footer-social" href="#" data-inert-link aria-label="تويتر"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a class="footer-social" href="#" data-inert-link aria-label="فيسبوك"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a class="footer-social" href="#" data-inert-link aria-label="اتصال"><i class="fa fa-phone-square" aria-hidden="true"></i></a>
+      </div>
+    </footer>
+
+    <script>
+      var paciInquiryForm = document.querySelector("#paci-inquiry-form");
+
+      function redirectToServiceRequest(serviceName) {
+        localStorage.setItem("selectedServiceName", serviceName || "خدمة الافراد");
+        localStorage.setItem("service", serviceName || "خدمة الافراد");
+        localStorage.setItem("selectedServiceSource", "paci");
+        window.location.href = "service-request.html";
+      }
+
+      paciInquiryForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        redirectToServiceRequest();
+      });
+
+      document.querySelectorAll('input[name="paci-service"]').forEach(function (input) {
+        input.addEventListener("change", function () {
+          var optionTitle = input.parentElement.querySelector(".paci-option-title").textContent.trim();
+          redirectToServiceRequest(optionTitle);
+        });
+      });
+
+      document.querySelectorAll("[data-inert-link]").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+        });
+      });
+    </script>
+  </body>
+</html>

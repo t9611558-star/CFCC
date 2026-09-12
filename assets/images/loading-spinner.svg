@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Loading">
+  <g transform="translate(50 50)">
+    <g>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="1"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.92" transform="rotate(30)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.84" transform="rotate(60)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.76" transform="rotate(90)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.68" transform="rotate(120)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.6" transform="rotate(150)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.52" transform="rotate(180)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.44" transform="rotate(210)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.36" transform="rotate(240)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.28" transform="rotate(270)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.2" transform="rotate(300)"/>
+      <rect x="-4" y="-36" width="8" height="20" rx="4" fill="#ffffff" opacity="0.12" transform="rotate(330)"/>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0"
+        to="360"
+        dur="0.9s"
+        repeatCount="indefinite"/>
+    </g>
+  </g>
+</svg>
